@@ -1,0 +1,65 @@
+package joris.sip.compiler;
+
+parser code {:
+
+	private Context context;
+
+    public void report_error(String message, Object info) {
+        StringBuffer m = new StringBuffer("Error");
+		m.append (info.toString());
+        m.append(" : "+message);
+        System.err.println(m.toString());
+    }
+   
+    public void report_fatal_error(String message, Object info) {
+        report_error(message, info);
+        System.exit(1);
+    }
+    
+    public void setContext (Context context) {
+    	this.context = context;
+    }
+
+    public Context getContext () {
+		return this.context;
+    }
+    
+    public Factory getFactory() {
+    	return this.context.getFactory();
+    }
+:}
+
+
+nonterminal instruments, instrument;
+nonterminal scores, score;
+
+terminal TERM, END;
+terminal NAME, INT;
+
+instruments ::=
+			| instruments instrument 			{: 
+													getContext().writeFile(); 
+												:}
+			;
+			 
+instrument ::= NAME:n scores INT:r END			{: 
+													getContext().addInstrument(
+														getFactory().createInstrument(
+															getFactory().createString(n), getFactory().getScore(), getFactory().getDurations(), getFactory().createInt(r)));
+													
+													getFactory().clearNotes();
+													getFactory().clearDurations(); 
+												:}
+		   ;
+		   
+scores ::=
+	   | scores score
+	   ;
+	  
+score ::= INT:t INT:d TERM						{: 
+													getFactory().addNote(getFactory().createInt(t));
+													getFactory().addDur(getFactory().createInt(d));
+												:}
+	  ;
+		   
+		   
