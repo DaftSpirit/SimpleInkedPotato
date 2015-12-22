@@ -37,12 +37,21 @@ public class Factory {
 		return ((Integer) o).intValue();
 	}
 	
+	public double createDouble(Object o) {
+		return ((Double) o).doubleValue();
+	}
+	
 	public String createString(Object o) {
 		return ((String)o);
 	}
 	
-	public Instrument createInstrument(String name, ArrayList<Integer> notes, ArrayList<Integer> dur, int rep) {
-		Instrument res = new Instrument(name, notes, dur, rep);
+	public InstrumentPlayable createInstrument(String name, ArrayList<Integer> notes, ArrayList<Integer> dur, int rep) {
+		InstrumentPlayable res = new InstrumentPlayable(name, notes, dur, rep);
+		return res;
+	}
+	
+	public InstrumentDef createDefinition(String name, String shape, double phase) {
+		InstrumentDef res = new InstrumentDef(name, shape, phase);
 		return res;
 	}
 

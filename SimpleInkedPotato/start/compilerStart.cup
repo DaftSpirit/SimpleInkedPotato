@@ -32,9 +32,12 @@ parser code {:
 
 nonterminal instruments, instrument;
 nonterminal scores, score;
+nonterminal shape;
 
 terminal TERM, END;
-terminal NAME, INT;
+terminal NAME, INT, DOUBLE;
+terminal NEW, LBRACKET, RBRACKET;
+terminal TRIANGLE, SAW, PULSE, PARABOL;
 
 instruments ::=
 			| instruments instrument 			{: 
@@ -42,15 +45,20 @@ instruments ::=
 												:}
 			;
 			 
-instrument ::= NAME:n scores INT:r END			{: 
+instrument ::= NAME:n scores INT:r END			{: 															
 													getContext().addInstrument(
 														getFactory().createInstrument(
 															getFactory().createString(n), getFactory().getScore(), getFactory().getDurations(), getFactory().createInt(r)));
+
 													
 													getFactory().clearNotes();
 													getFactory().clearDurations(); 
 												:}
-		   | NAME:n
+		   | NEW shape:s LBRACKET NAME:n TERM DOUBLE:phase RBRACKET END		{: 
+		   																		getContext().addDefinition(
+		   																			getFactory().createDefinition(
+		   																				getFactory().createString(n), getFactory().createString(s), getFactory().createDouble(phase)));
+		   																	:}
 		   ;
 		   
 scores ::=
@@ -61,6 +69,12 @@ score ::= INT:t INT:d TERM						{:
 													getFactory().addNote(getFactory().createInt(t));
 													getFactory().addDur(getFactory().createInt(d));
 												:}
+	  ;
+	  
+shape ::= TRIANGLE:s							{: RESULT = s; :}			
+	  | SAW:s									{: RESULT = s; :}	
+	  | PULSE:s									{: RESULT = s; :}	
+	  | PARABOL:s								{: RESULT = s; :}	
 	  ;
 		   
 		   

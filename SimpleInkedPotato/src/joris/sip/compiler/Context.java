@@ -10,24 +10,34 @@ import joris.sip.translator.*;
 
 public class Context {
 
-	private ArrayList<Instrument> instruments;
+	private ArrayList<InstrumentPlayable> instruments;
+	private ArrayList<InstrumentDef> definitions;
 	private Factory factory;
 
 	public Context() {
 		this.factory = new Factory();
-		this.instruments = new ArrayList<Instrument>();
+		this.instruments = new ArrayList<InstrumentPlayable>();
+		this.definitions = new ArrayList<InstrumentDef>();
 	}
 
 	public Factory getFactory() {
 		return this.factory;
 	}
 
-	public void addInstrument(Instrument i) {
+	public void addInstrument(InstrumentPlayable i) {
 		instruments.add(i);
 	}
 
-	public ArrayList<Instrument> getInstruments() {
+	public ArrayList<InstrumentPlayable> getInstruments() {
 		return this.instruments;
+	}
+	
+	public void addDefinition(InstrumentDef d) {
+		definitions.add(d);
+	}
+	
+	public ArrayList<InstrumentDef> getDefinitions() {
+		return this.definitions;
 	}
 
 	public void writeFile() {
@@ -53,10 +63,15 @@ public class Context {
 					+ "\t Out.ar(0, sig ! 2) \n"
 					+ "}).add; \n \n");
 
-			for (Instrument i : instruments) {
-				i.writeInstrument(bw);
-				System.out.println("g fini");
+			for(InstrumentDef d : definitions) {
+				d.writeNewInstrument(bw);
 			}
+			
+			for (InstrumentPlayable i : instruments) {
+				i.writeInstrument(bw);
+			}
+			
+			System.out.println("g fini");
 
 			bw.flush();
 			bw.close();
