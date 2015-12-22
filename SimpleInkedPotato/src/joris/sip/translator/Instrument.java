@@ -4,14 +4,43 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public abstract class Instrument {
+public class Instrument {
 	
 	protected String name;
 	protected ArrayList<Integer> notes;
 	protected ArrayList<Integer> durations;
 	protected int repetition;
 	
-	public abstract void writeInstrument(BufferedWriter bw) throws IOException;
+	public Instrument(String name, ArrayList<Integer> notes, ArrayList<Integer> durations, int rep) {
+		this.name = name;
+		this.notes = notes;
+		this.durations = durations;
+		this.repetition = rep;
+	}
+	
+	public void writeInstrument(BufferedWriter bw) throws IOException {
+		bw.write("Pseq([Pbind(\\instrument, \\" + this.name + ", "
+				+ "\\midinote, Pseq([");
+		for(int i = 0; i < notes.size(); ++i) {
+			if(i == notes.size() - 1) {
+				bw.write(notes.get(i).toString());
+				continue;
+			}
+			bw.write(notes.get(i).toString() + ", ");
+		}
+		bw.write("], 1), "
+				+ "\\dur, Pseq([");
+		for(int j = 0; j < durations.size(); ++j) {
+			if(j == durations.size() - 1){
+				bw.write(durations.get(j).toString());
+				continue;
+			}
+			bw.write(durations.get(j).toString() + ", ");
+		}
+		bw.write("], 1), "
+				+ "\\amp, 0.5 "
+				+ ")]," + repetition + ").play(quant: 1); \n\n");
+	}
 	
 	public String getInstrument() {
 		return name;

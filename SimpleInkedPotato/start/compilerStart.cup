@@ -50,6 +50,7 @@ instrument ::= NAME:n scores INT:r END			{:
 													getFactory().clearNotes();
 													getFactory().clearDurations(); 
 												:}
+		   | NAME:n
 		   ;
 		   
 scores ::=

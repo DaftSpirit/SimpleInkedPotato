@@ -41,24 +41,9 @@ public class Factory {
 		return ((String)o);
 	}
 	
-	public LeadSynth createLead(String n, ArrayList<Integer> notes, ArrayList<Integer> dur, int rep) {
-		LeadSynth res = new LeadSynth(n, new ArrayList<Integer>(notes), new ArrayList<Integer>(dur), rep);
-		return res;
-	}
-	
 	public Instrument createInstrument(String name, ArrayList<Integer> notes, ArrayList<Integer> dur, int rep) {
-		if(name.equals("lead")) {
-			return createLead(name, notes, dur, rep);
-		} else if(name.equals("bass")){
-			return createBass(name, notes, dur, rep);
-		} else {
-			return null;
-		}
-	}
-
-	private BassSynth createBass(String name, ArrayList<Integer> notes2,
-			ArrayList<Integer> dur, int rep) {
-		return null;
+		Instrument res = new Instrument(name, notes, dur, rep);
+		return res;
 	}
 
 }
