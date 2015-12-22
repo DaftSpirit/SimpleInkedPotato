@@ -15,5 +15,6 @@ Triangle, Sawtooth, Pulse, Parabolic
 * Use of Instruments
 type the name of your instrument and the notes you want with their durations
 
+# Example Code
 
 For an example goto /SimpleInkedPotato/test.sip
