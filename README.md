@@ -9,10 +9,10 @@ Then type the midinote and its duration and finnish with "end"
 
 # Features
 
-*Creation of instruments
+** Creation of instruments
 Triangle, Sawtooth, Pulse, Parabolic
 
-*Use of Instruments
+** Use of Instruments
 type the name of your instrument and the notes you want with their durations
 
 
