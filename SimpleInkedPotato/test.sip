@@ -3,7 +3,7 @@ lead
 	3
 end
 
-new triangle(tri | 1.0) end
+new triangle(tri | 1.0) endinstr
 
 tri
 	53 1| 46 1|

@@ -11,6 +11,7 @@
 
 "|"							{ return getSymbolFactory().newSymbol ("TERM", Sym.TERM); }
 "end"						{ return getSymbolFactory().newSymbol ("END", Sym.END); }
+"endinstr"					{ return getSymbolFactory().newSymbol ("ENDINSTR", Sym.ENDINSTR); }
 "new"						{ return getSymbolFactory().newSymbol ("NEW", Sym.NEW); }
 "("							{ return getSymbolFactory().newSymbol ("LBRACKET", Sym.LBRACKET); }
 ")"							{ return getSymbolFactory().newSymbol ("RBRACKET", Sym.RBRACKET); }

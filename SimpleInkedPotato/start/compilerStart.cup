@@ -34,15 +34,15 @@ nonterminal instruments, instrument;
 nonterminal scores, score;
 nonterminal shape;
 
-terminal TERM, END;
+terminal TERM, END, ENDINSTR;
 terminal NAME, INT, DOUBLE;
 terminal NEW, LBRACKET, RBRACKET;
 terminal TRIANGLE, SAW, PULSE, PARABOL;
 
-instruments ::=
-			| instruments instrument 			{: 
+instruments ::=									{: 
 													getContext().writeFile(); 
 												:}
+			| instruments instrument 			
 			;
 			 
 instrument ::= NAME:n scores INT:r END			{: 															
@@ -54,7 +54,7 @@ instrument ::= NAME:n scores INT:r END			{:
 													getFactory().clearNotes();
 													getFactory().clearDurations(); 
 												:}
-		   | NEW shape:s LBRACKET NAME:n TERM DOUBLE:phase RBRACKET END		{: 
+		   | NEW shape:s LBRACKET NAME:n TERM DOUBLE:phase RBRACKET ENDINSTR		{: 
 		   																		getContext().addDefinition(
 		   																			getFactory().createDefinition(
 		   																				getFactory().createString(n), getFactory().createString(s), getFactory().createDouble(phase)));
