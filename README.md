@@ -1,6 +1,6 @@
 # SimpleInkedPotato
 A language simplification of ScLang
-<p> Can be used in [!GorgeousInkedPotato (GIP)](https://github.com/DaftSpirit/GorgeousInkedPotato) </p>
+SIP Can be used in [GorgeousInkedPotato (GIP)] (https://github.com/DaftSpirit/GorgeousInkedPotato)
 
 # How to
 
