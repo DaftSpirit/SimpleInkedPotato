@@ -1,5 +1,6 @@
 # SimpleInkedPotato
-The big repo for a language for simplification of ScLang
+A language simplification of ScLang
+<p> Can be used in GorgeousInkedPotato ![gip](https://github.com/DaftSpirit/GorgeousInkedPotato) </p>
 
 # How to
 
@@ -18,3 +19,5 @@ type the name of your instrument and the notes you want with their durations
 # Example Code
 
 For an example goto /SimpleInkedPotato/test.sip
+
+<p> copyright @DaftSpirit 2016 all rights reserved </p>
