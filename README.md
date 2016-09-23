@@ -1,5 +1,5 @@
 # SimpleInkedPotato
-A language simplification of ScLang
+A language simplification of ScLang.
 SIP Can be used in [GorgeousInkedPotato (GIP)] (https://github.com/DaftSpirit/GorgeousInkedPotato)
 
 # How to
